@@ -112,22 +112,14 @@ class Question(models.Model):
     grade_point = models.FloatField(default=0.0)
 
     # <HINT> A sample model method to calculate if learner get the score of the question
-    #def is_get_score(self, selected_ids):
-    #    all_answers = self.choice_set.filter(is_correct=True).count()
-    #    selected_correct = self.choice_set.filter(is_correct=True, id__in=selected_ids).count()
-    #    if all_answers == selected_correct:
-    #        return True
-    #    else:
-    #        return False
-
-def is_get_score(self, selected_ids):
-    all_answers = self.choice_set.filter(correct=True).count()
-    all_selected = self.choice_set.filter(id__in=selected_ids).count()
-    selected_correct = self.choice_set.filter(correct=True, id__in=selected_ids).count()
-    if all_answers == selected_correct and all_selected == selected_correct:
-        return True
-    else:
-        return False
+    def is_get_score(self, selected_ids):
+        all_answers = self.choice_set.filter(correct=True).count()
+        all_selected = self.choice_set.filter(id__in=selected_ids).count()
+        selected_correct = self.choice_set.filter(correct=True, id__in=selected_ids).count()
+        if all_answers == selected_correct and all_selected == selected_correct:
+            return True
+        else:
+            return False
 
 
 #  <HINT> Create a Choice Model with:
